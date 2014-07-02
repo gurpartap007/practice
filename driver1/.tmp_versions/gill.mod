@@ -1,0 +1,2 @@
+/home/emblogic/gurpartap/Dropbox/CHAR_DRIVER/driver1/gill.ko
+/home/emblogic/gurpartap/Dropbox/CHAR_DRIVER/driver1/initial.o /home/emblogic/gurpartap/Dropbox/CHAR_DRIVER/driver1/cleanup.o /home/emblogic/gurpartap/Dropbox/CHAR_DRIVER/driver1/scull_open.o /home/emblogic/gurpartap/Dropbox/CHAR_DRIVER/driver1/scull_write.o /home/emblogic/gurpartap/Dropbox/CHAR_DRIVER/driver1/scull_read.o /home/emblogic/gurpartap/Dropbox/CHAR_DRIVER/driver1/scull_release.o
