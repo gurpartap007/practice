@@ -1,0 +1,22 @@
+#! /bin/bash
+ci  header.h
+ci  init.c
+ci  clean.c
+
+read v
+co header.h
+co init.h
+co clean.c
+read v
+
+make
+read v
+insmod ./modules/lkm.ko
+read v
+
+dmesg
+read v
+rmmod kash.ko
+read v
+rm -rf modules
+echo "test script over"

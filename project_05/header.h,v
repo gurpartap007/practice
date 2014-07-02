@@ -1,0 +1,163 @@
+head	1.7;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.7
+date	2014.05.13.05.30.12;	author root;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2014.05.13.04.54.51;	author root;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2014.05.13.04.39.35;	author root;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2014.05.13.00.54.48;	author root;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2014.05.11.10.20.23;	author root;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2014.05.11.00.59.39;	author root;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2014.05.08.17.15.24;	author root;	state Exp;
+branches;
+next	;
+
+
+desc
+@This is header for charcter driver
+defined DEVICE_NAME,Debug
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@#ifndef __header
+#define __header
+#include<linux/init.h>
+#include<linux/slab.h>
+#include<linux/cdev.h>
+#include<linux/kernel.h>
+#include<linux/module.h>
+#include<linux/moduleparam.h>
+#include<linux/fs.h>
+MODULE_LICENSE("GPL");
+MODULE_DESCRIPTION("Module for Character Driver\n");
+MODULE_AUTHOR("KASHISH GARG");
+
+#ifndef DEBUG
+#define DEBUG
+#endif
+#ifndef DEVICE_NAME
+#define DEVICE_NAME "KASHISHDEV"
+#endif
+struct ScullQset
+{
+void **data;
+struct ScullQset *next;
+};
+struct ScullDev
+{
+struct ScullQset *scullqset;
+struct cdev c_dev;
+int quantum_size;
+int qset_size;
+int data_size;
+int device_size;
+
+}
+;
+
+#endif
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@a7 1
+#include<linux/module.h>
+d28 1
+d33 1
+a33 1
+struct cdev c_dev;
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d8 2
+@
+
+
+1.4
+log
+@defined ScullQset
+@
+text
+@d19 1
+a19 1
+struct Scullqset
+d27 4
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d19 5
+a23 1
+
+d26 1
+@
+
+
+1.2
+log
+@defined structure for ScullDev
+@
+text
+@a19 1
+
+d22 1
+a22 1
+struct cdev chr_dev;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 2
+d4 2
+d20 8
+@

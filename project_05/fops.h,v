@@ -1,0 +1,53 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2014.05.13.00.55.17;	author root;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2014.05.11.10.25.59;	author root;	state Exp;
+branches;
+next	;
+
+
+desc
+@defined file_operations structure
+@
+
+
+1.2
+log
+@added fileoperation devwrite
+@
+text
+@#ifndef __fileopr
+#define __fileopr
+#include"prototypes.h"
+struct file_operations fops=
+{
+
+open:devopen,
+release:devrelease,
+write:devwrite
+
+};
+#endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 2
+a9 2
+release:devrelease
+
+@

@@ -1,0 +1,223 @@
+head	1.8;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.8
+date	2014.05.13.05.19.38;	author root;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2014.05.13.04.39.40;	author root;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2014.05.11.10.20.44;	author root;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2014.05.11.01.00.00;	author root;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2014.05.08.18.15.22;	author root;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2014.05.08.18.10.40;	author root;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2014.05.08.17.39.37;	author root;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2014.05.08.17.15.31;	author root;	state Exp;
+branches;
+next	;
+
+
+desc
+@thiis is initilisation function
+just checked init fun proper working
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@#include"header.h"
+#include"declaration.h"
+#include"fops.h"
+struct ScullDev *sculldev;
+struct cdev *my_chrdev;
+dev_t dev,newdev;
+int nod=5,quantum_size=8,qset_size=8, data_size=100,device_size=100;
+module_param(nod,int,S_IRUGO);
+module_param(quantum_size,int,S_IRUGO);
+module_param(qset_size,int,S_IRUGO);
+module_param(data_size,int,S_IRUGO);
+module_param(device_size,int,S_IRUGO);
+	int i,major_no,minor_no;
+	static int  initial(void)
+{
+	#ifdef DEBUG
+	printk(KERN_INFO"This is initialisation function=%s\n",__func__);
+	printk(KERN_INFO"hello kernel\n");
+	#endif
+	alloc_chrdev_region(&dev,0,nod,DEVICE_NAME);
+	major_no=MAJOR(dev);
+sculldev=(struct ScullDev *)kmalloc(sizeof(struct ScullDev)*nod,GFP_KERNEL);
+	printk(KERN_INFO"memmory succesfull allocated %p",sculldev);
+	if(!sculldev)
+{
+	#ifdef DEBUG
+	printk(KERN_ERR"memory allocation for sculldev failed\n");
+	goto OUT;
+	#endif
+}
+for(i=0;i<nod;i++)
+{
+newdev=MKDEV(major_no,i);
+printk("for scull[%d]major no is%d\n and minor no %d\n and dev is%d",i,major_no,i,newdev);
+cdev_init(&sculldev[i].c_dev,&fops);
+cdev_add(&sculldev[i].c_dev,newdev,1);
+cdev_add(&sculldev[i].c_dev,newdev,quantum_size);
+cdev_add(&sculldev[i].c_dev,newdev,qset_size);
+cdev_add(&sculldev[i].c_dev,newdev,data_size);
+cdev_add(&sculldev[i].c_dev,newdev,device_size);
+}
+return 0;
+OUT:
+	return -1;
+}
+module_init(initial);
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d7 1
+@
+
+
+1.6
+log
+@used cdev_init and cdevadd
+@
+text
+@d6 7
+a12 2
+dev_t dev;
+	int nod=5,i,major_no,minor_no;
+d19 1
+a19 1
+	alloc_chrdev_region(&dev,0,1,DEVICE_NAME);
+d21 1
+a21 6
+	minor_no=MINOR(dev);
+
+
+	printk(KERN_INFO"major no is=%d and minor no is=%d",major_no,minor_no);
+
+	sculldev=(struct ScullDev *)kmalloc(sizeof(struct ScullDev),GFP_KERNEL);
+d30 11
+a40 4
+
+cdev_init(&(sculldev->c_dev),&fops);
+cdev_add(&(sculldev->c_dev),dev,1);
+
+@
+
+
+1.5
+log
+@succssfully register the device using alloc_chrdev_region
+@
+text
+@d2 5
+a6 3
+//#include"declaration.h"
+	struct ScullDev *sculldev;
+	dev_t dev;
+d14 1
+a14 1
+	alloc_chrdev_region(&dev,0,nod,DEVICE_NAME);
+d31 3
+@
+
+
+1.4
+log
+@used extern function for nod
+@
+text
+@d2 5
+a6 1
+static int  initial(void)
+d8 14
+a21 10
+dev_t dev;
+int nod=5,i,major_no,minor_no;
+#ifdef DEBUG
+printk(KERN_INFO"This is initialisation function=%s\n",__func__);
+printk(KERN_INFO"hello kernel\n");
+#endif
+alloc_chrdev_region(&dev,0,nod,DEVICE_NAME);
+major_no=MAJOR(dev);
+minor_no=MINOR(dev);
+for(i=0;i<5;i++)
+d23 4
+a26 2
+minor_no=i;
+printk(KERN_INFO"major no is=%d and minor no is=%d",major_no,minor_no);
+d28 1
+d30 2
+@
+
+
+1.3
+log
+@register driver for 5 devices
+@
+text
+@a1 1
+#include"declaration.h"
+@
+
+
+1.2
+log
+@register the driver using alloc char dev region
+@
+text
+@d15 2
+d18 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+d5 2
+d11 5
+a15 1
+
+@

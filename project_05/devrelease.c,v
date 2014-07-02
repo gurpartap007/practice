@@ -1,0 +1,30 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2014.05.11.10.30.17;	author root;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#include"prototypes.h"
+int devrelease(struct inode *inodep,struct file *filep)
+{
+
+printk(KERN_INFO"release");
+return 0;
+}
+@
