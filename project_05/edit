@@ -1,0 +1,11 @@
+#! /bin/bash
+co -l header.h
+co -l init.c
+co -l fops.h
+co -l declaration.h
+co -l fops.h
+co -l prototypes.h
+co -l devopen.c
+co -l devrelease.c
+co -l clean.c
+co -l devwrite.c

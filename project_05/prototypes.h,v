@@ -1,0 +1,64 @@
+head	1.3;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.3
+date	2014.05.15.20.38.29;	author root;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2014.05.13.00.55.38;	author root;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2014.05.11.10.28.59;	author root;	state Exp;
+branches;
+next	;
+
+
+desc
+@define int devopen and devrelease
+@
+
+
+1.3
+log
+@gave prototype for createqset nd createquantum
+@
+text
+@#ifndef __proto
+#define __proto
+#include"header.h"
+int devopen(struct inode *,struct file *filep);
+int devrelease(struct inode *,struct file *filep);
+ssize_t devwrite(struct file *filep,const char __user *buffer,size_t size,loff_t *);
+struct ScullQset * createqset(int);
+int createquantum(int);
+
+#endif
+@
+
+
+1.2
+log
+@defined devwrite function to write
+@
+text
+@d7 2
+a8 1
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d6 3
+@

@@ -1,0 +1,48 @@
+#! /bin/bash
+ci  header.h
+ci declaration.h 
+ci init.c
+ci  clean.c
+ci fops.h
+ci prototypes.h
+ci devopen.c
+ci devrelease.c
+ci devwrite.c
+read v
+co header.h
+co declaration.h 
+co init.c
+co clean.c
+co fops.h
+co prototypes.h
+co devopen.c
+co devrelease.c
+co devwrite.c
+read v
+make
+read v
+insmod ./modules/lkm.ko nod=5 quantum_size=8 qset_size=8 data_size=0 device_size=1024
+read v
+cat /proc/devices
+read v
+gcc application.c -o app
+./app
+read v
+dmesg
+read v
+rmmod lkm.ko
+read v
+
+dmesg
+read v
+rm -rf modules modules.order Module.symvers
+rm header.h
+rm init.c
+rm declaration.h
+rm fops.h
+rm prototypes.h
+rm devopen.c
+rm devrelease.c
+rm clean.c
+rm devwrite.c
+echo "test script over"
